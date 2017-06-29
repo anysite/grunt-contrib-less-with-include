@@ -30,7 +30,7 @@ module.exports = function(grunt) {
 
     // Configuration to be run (and then tested).
     less_with_include: {
-      mixin: {
+      all: {
         options: {
           include : [{
               src: 'test/include/*.less'

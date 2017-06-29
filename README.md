@@ -2,6 +2,53 @@
 
 > complie less files with prernder files
 
+##goal
+
+this plugin would render less files to css, with prefixing other less files, but not include their output
+
+let's say we have theme file defines mixin
+> theme.less
+```
+.yellow{
+  color:yellow;
+  border: 1px solid yellow;
+}
+
+```
+
+if we want to render it with theme file which contains
+> box.less
+```
+.yellow-box{
+  .yellow
+}
+```
+we need to concat them, resulting the css render also the theme file
+
+> output.css
+```
+.yellow{
+  color:yellow;
+  border: 1px solid yellow;
+}
+.yellow-box{
+  color:yellow;
+  border: 1px solid yellow;
+}
+```
+
+if we will use this theme file in number of files, each of them would include the .yellow rule.
+
+this plugin added the theme file in render stage but remove it from output so we will get 
+> output.css
+```
+.yellow-box{
+  color:yellow;
+  border: 1px solid yellow;
+}
+```
+
+
 ## Getting Started
 This plugin requires Grunt `~0.4.5`
 
@@ -25,65 +72,53 @@ In your project's Gruntfile, add a section named `less_with_include` to the data
 ```js
 grunt.initConfig({
   less_with_include: {
-    options: {
-      // Task-specific options go here.
+      all: {
+        options: {
+          include : []//files object
+          },
+        files: []//files object
+      }
     },
-    your_target: {
-      // Target-specific file lists and/or options go here.
-    },
-  },
 });
 ```
 
 ### Options
 
-#### options.separator
-Type: `String`
-Default value: `',  '`
+#### options.include
+Type: `files`
+Default value: `{}`
 
-A string value that is used to do something with whatever.
-
-#### options.punctuation
-Type: `String`
-Default value: `'.'`
-
-A string value that is used to do something else with whatever else.
+all the files to include before renderin less files.
 
 ### Usage Examples
 
-#### Default Options
-In this example, the default options are used to do something with whatever. So if the `testing` file has the content `Testing` and the `123` file had the content `1 2 3`, the generated result would be `Testing, 1 2 3.`
+In this example, all less files in example/render would be rendered to example/rendered. eahc file would be rendered with example/include included
 
 ```js
 grunt.initConfig({
   less_with_include: {
-    options: {},
-    files: {
-      'dest/default_options': ['src/testing', 'src/123'],
-    },
-  },
-});
-```
+      all: {
+        options: {
+          include : [{
+              src: 'example/include/*.less'
+              }
+            ]
+          },
+        files: [{
+            expand: true,       
+            cwd: 'example/render', 
+            src: ['*.less'], 
+            dest: 'example/rendered', 
+            ext: '.css',   
 
-#### Custom Options
-In this example, custom options are used to do something else with whatever else. So if the `testing` file has the content `Testing` and the `123` file had the content `1 2 3`, the generated result in this case would be `Testing: 1 2 3 !!!`
-
-```js
-grunt.initConfig({
-  less_with_include: {
-    options: {
-      separator: ': ',
-      punctuation: ' !!!',
+        }]
+      }
     },
-    files: {
-      'dest/default_options': ['src/testing', 'src/123'],
-    },
-  },
 });
 ```
 
 ## Contributing
-In lieu of a formal styleguide, take care to maintain the existing coding style. Add unit tests for any new or changed functionality. Lint and test your code using [Grunt](http://gruntjs.com/).
+This module Contributed by [Hapisga](http://hapisga.co.il/)
 
 ## Release History
 _(Nothing yet)_
