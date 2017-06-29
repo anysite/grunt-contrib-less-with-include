@@ -39,13 +39,10 @@ exports.less_with_include = {
       var filePath = toTest[fileInd],
           actual = grunt.file.read(filePath.replace(/test\/expected/g,'tmp')),
           expected = grunt.file.read(filePath);
+          
       //now run css in less to equlize apsces, line breaks yada yada
-      less.render(expected, function (e, output) {
           console.log('filePath', filePath, filePath.replace(/test\/expected/g,'tmp'), filePath.split('/').pop() );
-          test.equal(actual, output.css, filePath.split('/').pop() + ' passed');
-      });
-      
-      
+      test.equal(actual, expected, filePath.split('/').pop() + ' passed');
     }
     
 
