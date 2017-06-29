@@ -35,14 +35,14 @@ exports.less_with_include = {
       test.expect(toTest.length);
     }
     for(var fileInd = 0; fileInd < toTest.length; fileInd++){
-      console.log('fileInd',fileInd);
+      //console.log('fileInd',fileInd);
       var filePath = toTest[fileInd],
           actual = grunt.file.read(filePath.replace(/test\/expected/g,'tmp')),
           expected = grunt.file.read(filePath);
-          
+
       //now run css in less to equlize apsces, line breaks yada yada
-          console.log('filePath', filePath, filePath.replace(/test\/expected/g,'tmp'), filePath.split('/').pop() );
-      test.equal(actual, expected, filePath.split('/').pop() + ' passed');
+      //console.log('filePath', filePath, filePath.replace(/test\/expected/g,'tmp'), filePath.split('/').pop() );
+      test.equal(actual.replace(/\n|\t|\s/g,''), expected.replace(/\n|\t|\s/g,''), filePath.split('/').pop() + ' passed');
     }
     
 
