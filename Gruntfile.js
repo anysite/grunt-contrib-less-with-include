@@ -32,13 +32,23 @@ module.exports = function(grunt) {
     less_with_include: {
       mixin: {
         options: {
-          include : [
-            'test/include/mixin.less',
+          include : [{
+              src: 'test/include/*.less'
+              }
             ]
           },
-        files: {
-            'tmp/mixin.css': 'test/fixtures/mixin.less'
-        }
+        include : [{
+              src: 'test/include/*.less'
+              }
+            ],
+        files: [{
+            expand: true,        // Enable dynamic expansion.
+            cwd: 'test/fixtures',  // Src matches are relative to this path.
+            src: ['*.less'],     // Actual pattern(s) to match.
+            dest: 'tmp',  // Destination path prefix.
+            ext: '.css',         // Dest filepaths will have this extension.
+
+        }]
       }
     },
 

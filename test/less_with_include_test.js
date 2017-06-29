@@ -1,6 +1,7 @@
 'use strict';
 
-var grunt = require('grunt');
+var grunt = require('grunt'),
+    less = require('less');
 
 /*
   ======== A Handy Little Nodeunit Reference ========
@@ -28,11 +29,25 @@ exports.less_with_include = {
     done();
   },
   default_options: function(test) {
-    test.expect(1);
-
-    var actual = grunt.file.read('tmp/mixin.css');
-    var expected = grunt.file.read('test/expected/mixin.css');
-    test.equal(actual, expected, 'should describe what the default behavior is.');
+    
+    var toTest = grunt.file.expand('test/expected/*.css');
+    if(toTest.length){
+      test.expect(toTest.length);
+    }
+    for(var fileInd = 0; fileInd < toTest.length; fileInd++){
+      console.log('fileInd',fileInd);
+      var filePath = toTest[fileInd],
+          actual = grunt.file.read(filePath.replace(/test\/expected/g,'tmp')),
+          expected = grunt.file.read(filePath);
+      //now run css in less to equlize apsces, line breaks yada yada
+      less.render(expected, function (e, output) {
+          console.log('filePath', filePath, filePath.replace(/test\/expected/g,'tmp'), filePath.split('/').pop() );
+          test.equal(actual, output.css, filePath.split('/').pop() + ' passed');
+      });
+      
+      
+    }
+    
 
     test.done();
   }
