@@ -2,7 +2,7 @@
   "name": "less-with-include",
   "description": "complie less files with prernder files",
   "version": "0.1.0",
-  "homepage": "https://github.com/itsick/less-with-include",
+  "homepage": "https://github.com/anysite/grunt-contrib-less-with-include",
   "author": {
     "name": "Itsick",
     "email": "any.site.n.site@gmail.com"
@@ -12,12 +12,12 @@
     "url": "git://github.com/itsick/less-with-include.git"
   },
   "bugs": {
-    "url": "https://github.com/itsick/less-with-include/issues"
+    "url": "https://github.com/anysite/grunt-contrib-less-with-include/issues"
   },
   "licenses": [
     {
       "type": "MIT",
-      "url": "https://github.com/itsick/less-with-include/blob/master/LICENSE-MIT"
+      "url": "https://github.com/anysite/grunt-contrib-less-with-include/blob/master/LICENSE-MIT"
     }
   ],
   "engines": {
