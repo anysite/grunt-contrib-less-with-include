@@ -7,7 +7,10 @@
     "name": "Itsick",
     "email": "any.site.n.site@gmail.com"
   },
-  "main" : "tasks/less_with_include.js",
+  "main": "tasks/less_with_include.js",
+  "files": [
+    "tasks/less_with_include.js"
+  ],
   "repository": {
     "type": "git",
     "url": "git://github.com/itsick/less-with-include.git"
@@ -35,5 +38,8 @@
   },
   "keywords": [
     "gruntplugin"
-  ]
+  ],
+  "dependencies": {
+    "less": "^2.7.2"
+  }
 }
