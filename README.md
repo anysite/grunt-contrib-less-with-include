@@ -39,6 +39,16 @@ we need to concat them, resulting the css render also the theme file
 
 if we will use this theme file in number of files, each of them would include the .yellow rule.
 
+Less give us solution: You can define mixin without output, like this:
+
+```
+.yellow(){
+  color:yellow;
+}
+```
+
+But sometimes you do want the mixin to be printed
+
 this plugin added the theme file in render stage but remove it from output so we will get 
 > output.css
 ```
@@ -47,7 +57,7 @@ this plugin added the theme file in render stage but remove it from output so we
   border: 1px solid yellow;
 }
 ```
-
+Other benefit - you can define file list of file to preload in any file, without need to include them in each file
 
 ## Getting Started
 This plugin requires Grunt `~0.4.5`
@@ -88,11 +98,11 @@ grunt.initConfig({
 Type: `files`
 Default value: `{}`
 
-all the files to include before renderin less files.
+all the files to include before rendering less files.
 
 ### Usage Examples
 
-In this example, all less files in example/render would be rendered to example/rendered. eahc file would be rendered with example/include included
+In this example, all less files in example/render would be rendered to example/rendered. each file would be rendered with example/include included
 
 ```js
 grunt.initConfig({
