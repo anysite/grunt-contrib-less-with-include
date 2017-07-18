@@ -1,12 +1,13 @@
 {
   "name": "less-with-include",
   "description": "complie less files with prernder files",
-  "version": "0.1.0",
+  "version": "0.1.02",
   "homepage": "https://github.com/anysite/grunt-contrib-less-with-include",
   "author": {
     "name": "Itsick",
     "email": "any.site.n.site@gmail.com"
   },
+  "main" : "tasks/less_with_include.js",
   "repository": {
     "type": "git",
     "url": "git://github.com/itsick/less-with-include.git"
